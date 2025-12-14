@@ -1,0 +1,114 @@
+body {
+    color: #01345e;
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #eff2f5;
+}
+
+/* --- ШАПКА --- */
+header {
+    background: #01345e;
+    color: white;
+    padding: 15px 20px;
+    display: flex;
+    gap: 20px;
+    align-items: center;
+    justify-content: center;
+}
+
+header a {
+    color: white;
+    text-decoration: none;
+    font-size: 16px;
+}
+
+header a:hover {
+    color: #379dd5;
+}
+
+/* --- СЕТКА ОСНОВНОЙ ЧАСТИ --- */
+.grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: 300px 250px;
+    gap: 15px;
+    padding: 20px;
+}
+
+/* Верхняя линия новостей объединяет 3 колонки */
+.news-big {
+    grid-column: span 3;
+    background: #f6fbff;
+    border-radius: 10px;
+    border: 1px solid #01345e;
+    padding: 20px;
+    box-shadow: 0 0 4px rgba(0,0,0,0.1);
+}
+
+/* Карточки статей внутри большого блока новостей */
+.news-list {
+    display: flex;
+    gap: 20px;
+}
+
+.news-item {
+    flex: 1;
+    background: #ffffff;
+    border-radius: 6px;
+    padding: 15px;
+    border: 1px solid #01345e;
+}
+
+.news-item h3 {
+    margin-top: 0;
+}
+
+/* Заглушки категорий */
+.block {
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 0 4px rgba(0,0,0,0.1);
+    padding: 20px;
+    font-size: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.side-button {
+    z-index: 9999;
+    width: 15%;
+    height: 100%;
+    position: fixed;
+    background-color: #e7ecf1;
+    color: #dddfe2;
+}
+.side-button:hover {
+    color: #a8bdd3;
+}
+
+/* Адаптивность */
+@media (phone) {
+    .grid {
+        grid-template-columns: 1fr;
+        grid-template-rows: auto;
+    }
+    .news-big {
+        grid-column: span 1;
+    }
+    .news-list {
+        flex-direction: column;
+    }
+}
+@media (tablet) or (max-width: 900px) {
+    .grid {
+        grid-template-columns: 1fr;
+        grid-template-rows: auto;
+    }
+    .news-big {
+        grid-column: span 1;
+    }
+    .news-list {
+        flex-direction: column;
+    }
+}
