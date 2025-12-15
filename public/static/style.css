@@ -10,10 +10,14 @@ header {
     background: #01345e;
     color: white;
     padding: 15px 20px;
-    display: flex;
     gap: 20px;
     align-items: center;
     justify-content: center;
+    text-align: center;
+}
+
+header h1 {
+    margin-top: 0;
 }
 
 header a {
@@ -24,6 +28,51 @@ header a {
 
 header a:hover {
     color: #379dd5;
+}
+
+.header-ref {
+    justify-self: center;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    content: "|";
+}
+
+.header-ref li {
+    margin: 0 15px;
+}
+
+
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+/* Контейнер с выпадающим содержимым */
+.dropdown-content {
+  display: none;
+  position: absolute;
+  left: -40px;
+  background-color: #f9f9f9;
+  min-width: 160px;
+  border: 1px solid #01345e;
+  border-radius: 10px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 2;
+}
+
+/* Ссылки внутри меню */
+.dropdown-content a {
+  color: #01345e;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+/* При наведении на кнопку или контейнер */
+.dropdown:hover .dropdown-content {
+  display: block; /* Показать меню */
 }
 
 /* --- СЕТКА ОСНОВНОЙ ЧАСТИ --- */
@@ -53,10 +102,12 @@ header a:hover {
 
 .news-item {
     flex: 1;
+    max-width: 30%;
     background: #ffffff;
     border-radius: 6px;
     padding: 15px;
     border: 1px solid #01345e;
+    overflow-wrap: break-word;
 }
 
 .news-item h3 {
@@ -75,11 +126,12 @@ header a:hover {
     justify-content: center;
 }
 
+/* БОКОВАЯ КНОПКА НАВЕРХ - НАЗАД */
 .side-button {
-    z-index: 9999;
+    z-index: 1;
     width: 15%;
     height: 100%;
-    position: fixed;
+    position: absolute;
     background-color: #e7ecf1;
     color: #dddfe2;
 }

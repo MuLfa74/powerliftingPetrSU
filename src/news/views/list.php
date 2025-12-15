@@ -8,21 +8,14 @@
 </head>
 <body>
 
-<header>
-    <a href="/">Главная</a> |
-    <a href="/newslist">Новости</a> |
-    <a href="/achievements">Достижения</a> |
-    <a href="#">Для Участников</a> |
-    <a href="#">Для Новичков</a> |
-    <a href="#">Контакты</a> |
-    <a href="/media">Медиа</a>
-</header>
+<?php require __DIR__ . '/../../layout/header.php'; ?>
 
-<div class="side-button">
-<a>˄Наверх<a>
+<div class="side-button" onclick="window.scrollTo({top: 0, left: 0, behavior: 'smooth'})">
+    <a>˄Наверх</a>
 </div>
+
 <div class="item-list">
-    <h1><?= $type === 'news' ? 'Новости' : 'Интервью' ?></h1>
+    <h1><?= $type === 'news' ? 'Лента новостей' : 'Интервью' ?></h1>
 
     <?php if (empty($articles)): ?>
         <p>Материалов нет</p>
@@ -37,13 +30,16 @@
     <?php endif; ?>
 
     <!-- Пагинация -->
-    <?php if ($pages > 1): ?>
     <nav>
+    <ol class="pagination">
+    <?php if ($pages > 1): ?>
         <?php for ($i = 1; $i <= $pages; $i++): ?>
-            <a href="<?= $type?>/page/<?= $i ?>"></a>
+            <li onclick="location.href='/<?= $type ?>list/page/<?= $i ?>'"><a><?= $i ?></a>
+        </li>
         <?php endfor; ?>
-    </nav>
     <?php endif; ?>
+    </ol>
+    </nav>
 </div>
 
 </body>

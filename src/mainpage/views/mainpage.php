@@ -7,18 +7,9 @@
 </head>
 <body>
 
-<header>
-    <a href="/">Главная</a> |
-    <a href="/newslist">Новости</a> |
-    <a href="/achievements">Достижения</a> |
-    <a href="#">Для Участников</a> |
-    <a href="#">Для Новичков</a> |
-    <a href="#">Контакты</a> |
-    <a href="/media">Медиа</a>
-</header>
+<?php require __DIR__ . '/../../layout/header.php'; ?>
 
 <div class="grid">
-
     <!-- Верхняя полоса → Новости -->
     <div class="news-big">
         <h2>Новости</h2>

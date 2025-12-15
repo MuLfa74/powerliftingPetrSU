@@ -1,0 +1,74 @@
+.achivements{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: stretch;
+    gap: 2rem;
+    flex-wrap: wrap; /* перенос карточек на новую строку при нехватке места */
+    margin-top: 2rem;
+}
+
+.card{
+    background: white;
+    min-width: 30%;
+    text-align: center;
+    border-radius: 10px;
+    border: 1px solid #01345e;
+}
+
+.card h2{
+    font-size: 2em;
+    position: relative;
+    justify-self: center;
+    background: white;
+    width: fit-content;
+    padding: 0 5px;
+    margin: 0.2em 0 0.4em 0; /* плотнее к значению рекорда */
+    border-radius: 5px;
+}
+
+/* первый смежный <a> — крупное жирное значение рекорда, центрировано и граничит с заголовком */
+.card h2 + a{
+    display: block;
+    width: fit-content;
+    margin: 0.0em auto /* центр по горизонтали */;
+    font-size: 2.8em;
+    font-weight: 700;
+    line-height: 1;
+    margin-top: -0.15em;
+    text-decoration: none;
+    color: inherit;
+}
+
+/* список рекордов: вертикальные элементы, центр по горизонтали */
+ul.card-details, .card ul {
+    list-style: none;
+    padding: 0;
+    margin: 0.6em 0 0 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    row-gap: 0.35rem;
+}
+.card ul li {
+    font-size: 1.5em;
+    font-weight: 400;
+    display: block;
+    text-align: center;
+}
+/* разделитель "·" между элементами — центрированный блок между строками */
+.card ul li + li::before {
+    content: "·";
+    display: block;
+    text-align: center;
+    margin: -10px;
+    color: #01345e;
+    font-weight: 400;
+}
+
+@media(max-width:800px){
+    .card{
+        flex-direction: column;
+    }
+}

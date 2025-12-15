@@ -3,6 +3,7 @@
 require __DIR__ . '/../vendor/autoload.php';
 require __DIR__ . '/../database.php';
 
+use App\Achivements\AchivementsController;
 use App\MainPage\MainPageController;
 use App\News\NewsController;
 
@@ -75,6 +76,11 @@ switch ($parts[0]) {
 
         http_response_code(404);
         echo 'Страница интервью не найдена';
+        break;
+
+    case 'achivements':
+        $controller = new AchivementsController($db);
+        $controller->index();
         break;
     
     default:
