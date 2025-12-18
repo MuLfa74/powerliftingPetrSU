@@ -6,6 +6,8 @@ require __DIR__ . '/../database.php';
 use App\Achivements\AchivementsController;
 use App\MainPage\MainPageController;
 use App\News\NewsController;
+use App\Auth\AuthController;
+use App\InfoPages\InfoPageController;
 
 session_start();
 
@@ -19,7 +21,6 @@ if ($uri === '') {
 }
 
 switch ($parts[0]) {
-
     // ====== НОВОСТИ ========
     case 'newslist':
         $controller = new NewsController($db);
@@ -78,11 +79,42 @@ switch ($parts[0]) {
         echo 'Страница интервью не найдена';
         break;
 
+    // ====== ДОСТИЖЕНИЯ КАРТОЧКИ И ТАБЛИЦЫ ========
     case 'achivements':
         $controller = new AchivementsController($db);
         $controller->index();
         break;
     
+    // ====== ДЛЯ УЧАСТНИКОВ ========
+    case 'login':
+        $controller = new AuthController($db);
+        $controller->login();
+        break;
+    
+    case 'logout':
+        $controller = new AuthController($db);
+        $controller->logout();
+        break;
+
+    case 'profile':
+        if (!isset($_SESSION['user_id'])) {
+            header('Location: /login');
+            exit;
+        }
+        (new AuthController($db))->profile($_SESSION['user_id']);
+        break;
+    
+    // ====== ИНФО СТРАНИЦЫ ========
+    case 'for_newbies':
+        $controller = new InfoPageController();
+        $controller->forNewbies();
+        break;
+
+    case 'contact':
+        $controller = new InfoPageController();
+        $controller->contacts();
+        break;
+
     default:
         http_response_code(404);
         echo 'Страница не найдена';
