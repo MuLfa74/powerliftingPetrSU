@@ -1,0 +1,29 @@
+p {
+    text-align: center;
+}
+
+form input {
+    scale: 1.4;
+    color: #01345e;
+    border: 1px solid #01345e;
+    border-radius: 5px;
+    margin-bottom: 10px;
+}
+
+form button {
+    scale: 1.2;
+    color:#fff;
+    background-color: #01345e;
+    border-radius: 5px;
+}
+.item-list {
+    text-align: center;
+}
+
+.item-list a {
+    font-weight: bold;
+}
+
+.item-list a+a {
+    font-weight: normal;
+}
