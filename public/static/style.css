@@ -7,7 +7,11 @@ body {
 
 /* --- ШАПКА --- */
 header {
+    z-index: 2;
+    height: 110px;
     background: #01345e;
+    position: fixed;
+    width: 100%;
     color: white;
     padding: 15px 20px;
     gap: 20px;
@@ -47,6 +51,7 @@ header a:hover {
 .dropdown {
   position: relative;
   display: inline-block;
+  z-index:0;
 }
 
 /* Контейнер с выпадающим содержимым */
@@ -72,11 +77,13 @@ header a:hover {
 
 /* При наведении на кнопку или контейнер */
 .dropdown:hover .dropdown-content {
-  display: block; /* Показать меню */
+  display: block;
 }
 
 /* --- СЕТКА ОСНОВНОЙ ЧАСТИ --- */
 .grid {
+    position: relative;
+    top: 110px;
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     grid-template-rows: 300px 250px;
@@ -84,8 +91,8 @@ header a:hover {
     padding: 20px;
 }
 
-/* Верхняя линия новостей объединяет 3 колонки */
-.news-big {
+/* Блоки для верхней и нижней линии */
+.big-box {
     grid-column: span 3;
     background: #f6fbff;
     border-radius: 10px;
@@ -94,10 +101,23 @@ header a:hover {
     box-shadow: 0 0 4px rgba(0,0,0,0.1);
 }
 
-/* Карточки статей внутри большого блока новостей */
+.small-box {
+    background: #f6fbff;
+    border-radius: 10px;
+    border: 1px solid #01345e;
+    padding: 20px;
+    box-shadow: 0 0 4px rgba(0,0,0,0.1);
+}
+
+h2 {
+    margin-top:0;
+}
+
+/* Карточки статей внутри блока */
 .news-list {
     display: flex;
-    gap: 20px;
+    gap:0;
+    justify-content: center;
 }
 
 .news-item {
@@ -106,6 +126,7 @@ header a:hover {
     background: #ffffff;
     border-radius: 6px;
     padding: 15px;
+    margin-right: 15px;
     border: 1px solid #01345e;
     overflow-wrap: break-word;
 }
@@ -114,24 +135,16 @@ header a:hover {
     margin-top: 0;
 }
 
-/* Заглушки категорий */
-.block {
-    background: white;
-    border-radius: 8px;
-    box-shadow: 0 0 4px rgba(0,0,0,0.1);
-    padding: 20px;
-    font-size: 20px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+.news-item:last-child{
+    margin-right: 0;
 }
 
 /* БОКОВАЯ КНОПКА НАВЕРХ - НАЗАД */
 .side-button {
-    z-index: 1;
+    top:110px;
     width: 15%;
     height: 100%;
-    position: absolute;
+    position: fixed;
     background-color: #e7ecf1;
     color: #dddfe2;
 }
@@ -139,28 +152,35 @@ header a:hover {
     color: #a8bdd3;
 }
 
-/* Адаптивность */
-@media (phone) {
-    .grid {
-        grid-template-columns: 1fr;
-        grid-template-rows: auto;
-    }
-    .news-big {
-        grid-column: span 1;
-    }
-    .news-list {
-        flex-direction: column;
-    }
+/* глобально учитывать padding/border в ширине */
+*, *::before, *::after {
+    box-sizing: border-box;
 }
-@media (tablet) or (max-width: 900px) {
+
+/* Адаптивность ПОКА ТОЛЬКО С ОДНОЙ КТ*/
+@media (max-width: 960px) {
     .grid {
         grid-template-columns: 1fr;
         grid-template-rows: auto;
-    }
-    .news-big {
-        grid-column: span 1;
+        width: 100%;
+        max-width: 100%;
+        padding: 20px;
+        overflow-x: hidden; 
     }
     .news-list {
         flex-direction: column;
+    }
+    .news-item {
+        max-width: 100%;
+        width: 100%;
+        margin-bottom:10px;
+        overflow-wrap: break-word;
+    }
+    .dropdown-content {
+        left: 0;
+        right: auto;
+    }
+    .side-button {
+        display: none;
     }
 }

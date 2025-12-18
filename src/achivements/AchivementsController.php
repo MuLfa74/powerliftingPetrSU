@@ -15,10 +15,18 @@ class AchivementsController{
         $this->repo = new AchivementsRepository($db);
     }
 
+    /**
+     * Показывает страницу достижений.
+     *
+     * Получает максимальные рекорды и таблицы достижений, затем подключает view.
+     *
+     * @return void
+     */
     public function index(): void
     {   
         $types = ['deadlift', 'benchpress', 'squat'];
         $maxRecords = $this->repo->getMaxAchivements($types);
+        $tablesData = $this->repo->getAllAchievementsByCategory();
         
         require __DIR__ . '/views/achivements.php';
     }

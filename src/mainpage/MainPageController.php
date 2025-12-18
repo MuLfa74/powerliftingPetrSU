@@ -26,14 +26,20 @@ class MainPageController
      */
     public function index(): void
     {
-        $articles = $this->repo->getLatestArticles(3);
+        $news = $this->repo->getLatestArticles(3);
+        $interview = $this->repo->getLatestArticles(1, 'interview');
+        $maxRecords = $this->repo->getMaxAchivements(['benchpress', 'deadlift', 'squat']);
 
         // формируем краткое описание (первые N символов)
-        foreach ($articles as &$article) {
-            $article['preview'] = mb_substr(strip_tags($article['text_md']), 0, 150) . '...';
+        foreach ($news as &$newsArticle) {
+            $newsArticle['preview'] = mb_substr(strip_tags($newsArticle['text_md']), 0, 150) . '...';
         }
 
-        unset($article);
+        foreach ($interview as &$interviewArticle) {
+            $interviewArticle['preview'] = mb_substr(strip_tags($interviewArticle['text_md']), 0, 150) . '...';
+        }
+
+        unset($interviewArticle); unset($newsArticle);
 
         require __DIR__ . '/views/mainpage.php';
     }

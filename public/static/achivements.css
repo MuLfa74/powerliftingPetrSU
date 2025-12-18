@@ -1,10 +1,11 @@
+/* КАРТОЧКИ ДОСТИЖЕННИЙ */
 .achivements{
     display: flex;
     flex-direction: row;
     justify-content: center;
     align-items: stretch;
     gap: 2rem;
-    flex-wrap: wrap; /* перенос карточек на новую строку при нехватке места */
+    flex-wrap: wrap;
     margin-top: 2rem;
 }
 
@@ -18,20 +19,18 @@
 
 .card h2{
     font-size: 2em;
-    position: relative;
     justify-self: center;
     background: white;
     width: fit-content;
     padding: 0 5px;
-    margin: 0.2em 0 0.4em 0; /* плотнее к значению рекорда */
+    margin: 0.2em 0 0.4em 0;
     border-radius: 5px;
 }
 
-/* первый смежный <a> — крупное жирное значение рекорда, центрировано и граничит с заголовком */
 .card h2 + a{
     display: block;
     width: fit-content;
-    margin: 0.0em auto /* центр по горизонтали */;
+    margin: 0.0em auto;
     font-size: 2.8em;
     font-weight: 700;
     line-height: 1;
@@ -40,7 +39,6 @@
     color: inherit;
 }
 
-/* список рекордов: вертикальные элементы, центр по горизонтали */
 ul.card-details, .card ul {
     list-style: none;
     padding: 0;
@@ -57,7 +55,7 @@ ul.card-details, .card ul {
     display: block;
     text-align: center;
 }
-/* разделитель "·" между элементами — центрированный блок между строками */
+
 .card ul li + li::before {
     content: "·";
     display: block;
@@ -67,8 +65,86 @@ ul.card-details, .card ul {
     font-weight: 400;
 }
 
-@media(max-width:800px){
+/* ТАБЛИЦЫ РЕКОРДОВ */
+.records-container {
+    margin-top: 1rem;
+}
+
+.records-block {
+    min-width: 260px;
+    margin-bottom: 1em;
+    border: 1px solid #01345e;
+    border-radius: 6px;
+}
+
+.records-table {
+    width: 100%;
+    border-collapse: collapse;
+    background: #ffffff;
+    border: 1px solid #01345e;
+    border-radius: 6px;
+    overflow: hidden;
+    box-shadow: 0 0 4px rgba(0,0,0,0.05);
+    font-size: 0.95rem;
+}
+
+.records-table caption {
+    text-align: left;
+    padding: 10px 14px;
+    background: #01345e;
+    color: #fff;
+    font-weight: 600;
+    border-bottom: 1px solid rgba(1,52,94,0.06);
+}
+
+.records-table th,
+.records-table td {
+    padding: 3px 12px;
+    border-bottom: 1px solid #eef6fb;
+    text-align: left;
+    vertical-align: middle;
+}
+
+.records-table th {
+    background: #fbfdff;
+    font-weight: 700;
+    font-size: 0.9em;
+}
+
+.records-table tbody tr:last-child td {
+    border-bottom: none;
+}
+
+.records-table tbody tr:hover {
+    background: #f4fbff;
+}
+
+.records-table a {
+    color: #01345e;
+    text-decoration: none;
+}
+
+.records-table a:hover {
+    color: #379dd5;
+    text-decoration: underline;
+}
+
+/* АДАПТИВНОСТЬ */
+@media (max-width: 900px) {
+    .records-container {
+        flex-direction: column;
+    }
+    .records-block {
+        width: 100%;
+    }
     .card{
+        flex-direction: column;
+    }
+
+}
+
+@media (max-width: 1300px){
+    .achivements{
         flex-direction: column;
     }
 }
